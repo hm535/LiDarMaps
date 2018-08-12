@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[4]:
-
-
 import thread, time, sys, traceback, serial
 from numpy import *
 
@@ -16,9 +10,6 @@ index = 0
 init_level = 0
 
 ser = serial.Serial(comport, baudrate)
-
-
-# In[1]:
 
 
 def update_readings (angle, data):       # Function to update file with good data
@@ -58,10 +49,6 @@ def computeChecksum (data):              # Computes and returns the checksum as 
     checksum = (chk & 0x7FFF) + (chk >> 15)   # wrap around 15 bits
     checksum = checksum & 0x7FFF              # truncate to 15 bits
     return int(checksum)
-
-
-# In[2]:
-
 
 def readLidar():
     global init_level, angle, index
@@ -119,14 +106,7 @@ def readLidar():
                 
 
 
-# In[3]:
-
-
 th = thread.start_new_thread(readLidar, ())
-
-
-# In[18]:
-
 
 ser.close()
 f.close()
